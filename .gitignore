@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# User-specific configuration (don't commit personal network info)
+*-personal.sh
+config-personal.sh
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
