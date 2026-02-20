@@ -1,0 +1,17 @@
+#!/bin/bash
+
+INTERFACE="your-interface"   # e.g. enp1s0 - run: ip addr show
+ACTION="$2"
+
+# Add your local subnets below
+LOCAL_SUBNETS=(
+    "10.x.x.0/24"   # LAN
+    "10.x.x.0/24"   # SERV
+    "10.x.x.0/24"   # BTC
+)
+
+if [ "$1" = "$INTERFACE" ] && [ "$ACTION" = "up" ]; then
+    for subnet in "${LOCAL_SUBNETS[@]}"; do
+        ip rule add to "$subnet" lookup main priority 100 2>/dev/null
+    done
+fi
