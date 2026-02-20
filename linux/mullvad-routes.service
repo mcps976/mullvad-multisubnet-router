@@ -1,0 +1,14 @@
+[Unit]
+Description=Add local subnet rules after Mullvad connects
+After=mullvad-daemon.service
+Requires=mullvad-daemon.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/etc/NetworkManager/dispatcher.d/10-mullvad-routes
+
+[Install]
+WantedBy=multi-user.target
+O
+

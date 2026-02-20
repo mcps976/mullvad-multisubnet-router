@@ -1,8 +1,5 @@
 #!/bin/bash
 
-INTERFACE="your-interface"   # e.g. enp1s0 - run: ip addr show
-ACTION="$2"
-
 # Add your local subnets below
 LOCAL_SUBNETS=(
     "10.x.x.0/24"   # LAN
@@ -10,12 +7,10 @@ LOCAL_SUBNETS=(
     "10.x.x.0/24"   # BTC
 )
 
-if [ "$1" = "$INTERFACE" ] && [ "$ACTION" = "up" ]; then
-    # Dynamically detect Mullvad's lowest priority rule and insert above it
-    MULLVAD_PRIORITY=$(ip rule show | /usr/bin/grep -E 'fwmark|suppress' | awk -F: '{print $1}' | sort -n | head -1)
-    OUR_PRIORITY=$((MULLVAD_PRIORITY - 10))
+# Dynamically detect Mullvad's lowest priority rule and insert above it
+MULLVAD_PRIORITY=$(ip rule show | /usr/bin/grep -E 'fwmark|suppress' | awk -F: '{print $1}' | sort -n | head -1)
+OUR_PRIORITY=$((MULLVAD_PRIORITY - 10))
 
-    for subnet in "${LOCAL_SUBNETS[@]}"; do
-        ip rule add to "$subnet" lookup main priority "$OUR_PRIORITY" 2>/dev/null
-    done
-fi
+for subnet in "${LOCAL_SUBNETS[@]}"; do
+    ip rule add to "$subnet" lookup main priority "$OUR_PRIORITY" 2>/dev/null
+done
