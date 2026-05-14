@@ -71,4 +71,4 @@ must detect and insert above current priority — never hardcode priority values
 ## Git Remotes
 
 - `origin` → git@github.com:mcps976/mullvad-multisubnet-router.git
-- `truenas` → truenas:/mnt/tank/git-repos/mullvad-multisubnet-router.git
+- `forgejo` → git@forgejo:mcps976/mullvad-multisubnet-router.git
