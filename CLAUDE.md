@@ -8,7 +8,7 @@
 
 Static route management so local subnet traffic bypasses the Mullvad VPN
 tunnel. Without this, Mullvad's kill switch blocks access to local devices
-(TrueNAS, nodebox, etc.) when VPN is active.
+(NAS, other nodes, etc.) when VPN is active.
 
 ---
 
@@ -32,8 +32,8 @@ tunnel. Without this, Mullvad's kill switch blocks access to local devices
 ## Key Configuration
 
 Edit two variables before use (both macOS and Linux scripts):
-- `LOCAL_GATEWAY` — LAN gateway IP (10.54.10.1)
-- `LOCAL_SUBNETS` — space-separated CIDR list: 10.54.10.0/24 10.54.20.0/24 10.54.30.0/24
+- `LOCAL_GATEWAY` — LAN gateway IP (e.g. `192.0.2.1`)
+- `LOCAL_SUBNETS` — space-separated CIDR list (e.g. `192.0.2.0/24 198.51.100.0/24`)
 
 ---
 
@@ -70,5 +70,5 @@ must detect and insert above current priority — never hardcode priority values
 
 ## Git Remotes
 
-- `origin` → git@github.com:mcps976/mullvad-multisubnet-router.git
-- `forgejo` → git@forgejo:mcps976/mullvad-multisubnet-router.git
+- `github` → git@github.com:mcps976/mullvad-multisubnet-router.git (public remote)
+- `origin` → a private self-hosted mirror (not reachable externally)
