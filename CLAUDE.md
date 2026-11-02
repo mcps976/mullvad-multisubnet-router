@@ -48,7 +48,7 @@ chmod +x install.sh
 
 ```bash
 sudo /usr/local/bin/mullvad-local-routes.sh   # Run directly
-netstat -rn | grep "10.54"                    # Verify routes added
+netstat -rn | grep -E "^10\."                    # Verify routes added
 launchctl list | grep mullvad                 # Check LaunchAgent
 cat /tmp/mullvad-routes.log                   # Inspect logs
 ```
